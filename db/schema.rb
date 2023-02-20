@@ -10,20 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_20_124009) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_20_125210) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "clinics", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "building", null: false
-    t.string "address", null: false
-    t.string "city", null: false
-    t.string "prefecture", null: false
-    t.string "phone", null: false
-    t.string "url"
+    t.string "name", default: "", null: false
+    t.string "building", default: "", null: false
+    t.string "address", default: "", null: false
+    t.string "city", default: "", null: false
+    t.string "prefecture", default: "", null: false
+    t.string "phone", default: "", null: false
+    t.string "url", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "staffs", force: :cascade do |t|
+    t.bigint "clinic_id", null: false
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["clinic_id"], name: "index_staffs_on_clinic_id"
+    t.index ["email"], name: "index_staffs_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "staffs", "clinics"
 end

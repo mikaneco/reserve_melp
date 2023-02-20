@@ -1,4 +1,6 @@
 class Clinic < ApplicationRecord
+  has_many :staffs, dependent: :destroy
+  
   validates :name, presence: true
   validates :building, presence: true
   validates :address, presence: true
