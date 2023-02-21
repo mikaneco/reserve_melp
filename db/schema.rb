@@ -10,11 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_20_125210) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "clinics", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2023_02_20_135749) do
+  create_table "clinics", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "building", default: "", null: false
     t.string "address", default: "", null: false
@@ -26,10 +23,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_20_125210) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "staffs", force: :cascade do |t|
+  create_table "staffs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "clinic_id", null: false
-    t.string "first_name", default: "", null: false
-    t.string "last_name", default: "", null: false
+    t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -37,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_20_125210) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role", default: 0, null: false
     t.index ["clinic_id"], name: "index_staffs_on_clinic_id"
     t.index ["email"], name: "index_staffs_on_email", unique: true
     t.index ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true

@@ -5,8 +5,7 @@ class DeviseCreateStaffs < ActiveRecord::Migration[7.0]
     create_table :staffs do |t|
       t.references :clinic, null: false, foreign_key: true
       ## Database authenticatable
-      t.string :first_name,         null: false, default: ""
-      t.string :last_name,          null: false, default: ""
+      t.string :name,         null: false, default: ""
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
